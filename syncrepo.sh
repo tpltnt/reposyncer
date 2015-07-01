@@ -12,7 +12,8 @@ CBRANCH=`git branch | grep -e "^*" | awk '{print $2}'`
 git checkout master
 
 # handle upstream if needed
-if [-n `git remote | grep upstream`]; then
+HASUPSTREAM=`git remote | grep upstream`
+if [ -n "$HASUPSTREAM" ]; then
     git pull upstream master
     git push
 fi
