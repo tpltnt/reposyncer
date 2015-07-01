@@ -16,6 +16,7 @@ fi
 # handle upstream if needed
 HASUPSTREAM=`git remote | grep upstream`
 if [ -n "$HASUPSTREAM" ]; then
+    git pull
     git pull upstream master
     git push
 fi
