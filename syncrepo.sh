@@ -8,8 +8,10 @@ set -e
 # get current branch
 CBRANCH=`git branch | grep -e "^*" | awk '{print $2}'`
 
-# work on 'master' branch
-git checkout master
+# work on 'master' branch (if needed)
+if [ "master" != "$CBRANCH" ]; then
+    git checkout master
+fi
 
 # handle upstream if needed
 HASUPSTREAM=`git remote | grep upstream`
@@ -21,5 +23,7 @@ fi
 # sync & kill remotes if needed
 git fetch -p
 
-# go back to inital branch
-git checkout $CBRANCH
+# go back to inital branch (if needed)
+if [ "master" != "$CBRANCH" ]; then
+    git checkout $CBRANCH
+fi
